@@ -14,12 +14,9 @@ dnf install https://dl.google.com/linux/direct/google-chrome-stable_current_x86_
 clear
 echo "Quase terminando, falta mais um pouco"
 dnf install http://download.virtualbox.org/virtualbox/5.1.22/VirtualBox-5.1-5.1.22_115126_fedora25-1.x86_64.rpm -y
-cd /etc/yum.repos.d/.
-  touch virtualbox.repo > [virtualbox]
-name=Fedora $releasever - $basearch - VirtualBox
-baseurl=http://download.virtualbox.org/virtualbox/rpm/fedora/$releasever/$basearch
-enabled=1
-gpgcheck=1
-repo_gpgcheck=1
-gpgkey=https://www.virtualbox.org/download/oracle_vbox.asc
-qq
+
+echo "Copie o arquivo virtualbox.repo para a pasta asseguir /etc/yum.repo.d/"
+
+echo "Instalando Atom"
+
+dnf install https://github.com/atom/atom/releases/download/v1.18.0/atom.x86_64.rpm -y
