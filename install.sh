@@ -51,7 +51,7 @@ dnf config-manager \
 
 dnf makecache fast
 
-dnf install docker-ce
+dnf install docker-ce -y
 
 groupadd docker
 
@@ -60,6 +60,6 @@ usermod -aG docker theazevedo
 systemctl enable docker
 
 
-dnf install snapd
+dnf install snapd -y
 
-snap install inkscape
+snap install inkscape -y
