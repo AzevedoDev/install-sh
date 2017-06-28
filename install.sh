@@ -58,3 +58,8 @@ groupadd docker
 usermod -aG docker theazevedo
 
 systemctl enable docker
+
+
+dnf install snapd
+
+snap install inkscape
