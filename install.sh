@@ -28,3 +28,33 @@ echo "Copie o arquivo virtualbox.repo para a pasta asseguir /etc/yum.repo.d/"
 echo "Instalando Atom"
 
 dnf install https://github.com/atom/atom/releases/download/v1.18.0/atom.x86_64.rpm -y
+
+echo "Instalando Flash Player"
+
+rpm -ivh http://linuxdownload.adobe.com/adobe-release/adobe-release-x86_64-1.0-1.noarch.rpm
+rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-adobe-linux
+
+dnf install https://fpdownload.adobe.com/pub/flashplayer/pdc/26.0.0.131/flash-player-ppapi-26.0.0.131-release.x86_64.rpm -y
+
+echo "Instalando Docker!!!"
+
+dnf -y remove -r docker \
+                  docker-common \
+                  container-selinux \
+                  docker-selinux \
+                  docker-engine
+
+dnf -y install dnf-plugins-core
+dnf config-manager \
+    --add-repo \
+    https://download.docker.com/linux/fedora/docker-ce.repo
+
+dnf makecache fast
+
+dnf install docker-ce
+
+groupadd docker
+
+usermod -aG docker theazevedo
+
+systemctl enable docker
