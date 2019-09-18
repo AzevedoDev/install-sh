@@ -1,17 +1,21 @@
 #!/bin/bash
 
 echo "Atualizando o sistema"
-dnf update -y
-echo "Instalando o tweak-tool"
-dnf install gnome-tweak-tool -y
+sudo apt update -y
+sudo apt install curl -y
+sudo apt install git -y
 echo "Instalando Google Crome..."
-dnf install https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm -y
+wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+sudo apt install ./google-chrome-stable_current_amd64.deb -y
 echo "Instalando VSCode"
-rpm --import https://packages.microsoft.com/keys/microsoft.asc
-sh -c 'echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com/yumrepos/vscode\nenabled=1\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc" > /etc/yum.repos.d/vscode.repo'
-dnf check-update -y
-dnf install code -y
-echo "Instalando Rambox"
-dnf install https://github.com/saenzramiro/rambox/releases/download/0.5.13/Rambox-0.5.13-x64.rpm -y
-echo "Instalando Node.js"
-dnf install nodejs -y
+wget https://az764295.vo.msecnd.net/stable/b37e54c98e1a74ba89e03073e5a3761284e3ffb0/code_1.38.1-1568209190_amd64.deb
+sudo apt install ./code_1.38.1-1568209190_amd64.deb -y
+echo "Instalando nvm"
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh | bash
+export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" 
+
+echo "Intalando zsh/oh-my-zsh"
+sudo apt install zsh -y
+chsh -s $(which zsh)
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
